@@ -95,11 +95,10 @@ function CharacterType(){
   }
   return RamPassword;
 }
-
 var valor = CharacterType();
 console.log(valor);
 
-
+return valor;
 }
 
 // Write password to the #password input
