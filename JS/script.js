@@ -32,6 +32,7 @@ function promptNumCharacters(){
 
 var numOfChar = promptNumCharacters();
 var RamPassword = "";
+var conlen=0;
 
 //Creation Array to use in our quetions
 var ListQuestions = ["lowercase","uppercase","numeric","special character"];
@@ -46,24 +47,26 @@ const SpecialChar = " |=>!$%&/(@#^*-+<;:.,]}{)]~'? ";
 
 const allRandom = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|=>!$%&/(@#^*-+<;:.,]}{)]~'?"
 
+const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+const randomCharacterUpper = alphabetUpper[Math.floor(Math.random() * alphabetUpper.length)];
+
+const randomCharacterSpe = SpecialChar[Math.floor(Math.random()* SpecialChar.length)];
+
 // console.log(RamPassword);
 function chooseCharacter(count){
     if(count == "0"){
-        const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
         RamPassword+=randomCharacter;
-        console.log(RamPassword);
+        conlen=+1;
     }else if(count == "1"){
-        const randomCharacterUpper = alphabetUpper[Math.floor(Math.random() * alphabetUpper.length)];
         RamPassword+=randomCharacterUpper;
-        console.log(RamPassword);
+        conlen=+1;
     }else if(count == "2"){
-        const ramdonNumber = Math.floor(Math.random()* 10)+1;
         RamPassword+=ramdonNumber;
-        console.log(RamPassword);
+        conlen=+1;
     }else if(count == "3"){
-        const randomCharacterSpe = SpecialChar[Math.floor(Math.random()* SpecialChar.length)];
         RamPassword+=randomCharacterSpe;
-        console.log(RamPassword);
+        conlen=+1;
    }
    console.log(count);
    
@@ -83,12 +86,14 @@ function CharacterType(){
   }
   if (response === "YES"){
     alert("ADD");
-    chooseCharacter(i);
-  }
-  else{
-    alert("The password would be generated automatically!")
-    while(RamPassword.length <= numOfChar){
-      const randomALL= allRandom[Math.floor(Math.random()* allRandom.length)];
+    RamPassword = chooseCharacter(i);
+  } 
+
+  if(RamPassword.length < numOfChar){
+    console.log(RamPassword.length);
+    alert("OK!")
+    for(var j=RamPassword.length;j<numOfChar-conlen;j++){
+      var randomALL= allRandom[Math.floor(Math.random()* allRandom.length)];
       RamPassword+=randomALL;
     }
   }
